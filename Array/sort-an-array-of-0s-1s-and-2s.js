@@ -1,7 +1,7 @@
 // https://www.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1
 // Given an array which consists of only 0, 1 and 2. Sort the array without using any sorting algo
 
-// Answer given - challenge failed
+// Failed
 class Solution {
   sort012(a, n) {
     let low = 0, high = n - 1, mid = 0; // Initialize three pointers: low, mid, and high.
