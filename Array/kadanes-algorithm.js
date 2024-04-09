@@ -1,20 +1,20 @@
 // https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1
 // Kadane's Algorithm
 
-// WIP
+// Passed
 class Solution {
   //Function to find the sum of contiguous subarray with maximum sum.
   maxSubarraySum(arr, N){
-    let max = Number.NEGATIVE_INFINITY;
-    let lastVal = 0;
+    let maxSum = Number.NEGATIVE_INFINITY;
+    let currentSum = 0;
 
     for (let i = 0; i < N; i++) {
-      let currVal = lastVal + arr[i];
-      if (currVal > max) max = currVal;
-      lastVal = currVal;
+      currentSum = currentSum + arr[i];
+      if (maxSum < currentSum) maxSum = currentSum;
+      if (currentSum < 0) currentSum = 0;
     }
 
-    return max;
+    return maxSum;
   }
 }
 
