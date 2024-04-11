@@ -2,7 +2,15 @@
 // 217. Contains Duplicate
 // Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
+
+// Passed, 96ms, 61.8mb
 function containsDuplicate(nums: number[]): boolean {
+  const set: Set<number> = new Set(nums);
+  return set.size < nums.length;
+}
+
+// Passed, 83ms, 63.8mb
+function containsDuplicate1(nums: number[]): boolean {
   const mySet: Set<number> = new Set();
   let lastSize: number = 0;
 
