@@ -2,8 +2,31 @@
 // 49. Group Anagrams
 // Given an array of strings 'strs', group the anagrams together. You can return the answer in any order.
 
-// Failed - too slow
+// Passed, 131ms, 64.68mb
 function groupAnagrams(strs: string[]): string[][] {
+  let returnArr: any[] = [];
+  const sortedStringMap: Map<string, string[]> = new Map<string, string[]>;
+
+  for (let string of strs) {
+    const sortedString: string = string.split('').sort().join('');
+    let currArr = sortedStringMap.get(sortedString) || [];
+    currArr.push(string);
+
+    sortedStringMap.set(
+      sortedString,
+      currArr
+    );
+  }
+
+  sortedStringMap.forEach((item) => {
+    returnArr.push(item);
+  });
+
+  return returnArr;
+}
+
+// Failed - too slow
+function groupAnagrams1(strs: string[]): string[][] {
   let anagramsArr: string[][] = [];
 
   for (let i: number = 0; i < strs.length; i++) {
