@@ -5,8 +5,43 @@
 // 2. Each column must contain the digits 1-9 without repetition.
 // 3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
 
-// Passed, 61ms, 52.83mb
+// Passed, 68ms, 53.43mb
 function isValidSudoku(board: string[][]): boolean {
+
+  const rowMap = new Map<string, number>();
+  const colMap = new Map<string, number>();
+  const boxMap = new Map<string, number>();
+
+  for (let col = 0; col < board.length; col++) {
+    for (let row = 0; row < board[col].length; row++) {
+      const currNumString: string = board[col][row];
+      if (currNumString == '.') continue;
+
+      const currNum: number = parseInt(currNumString);
+
+      // Update rowMap
+      const rowString: string = row.toString() + ", " + currNum.toString();
+      if (rowMap.get(rowString) !== undefined) return false;
+      rowMap.set(rowString, 1);
+
+      // Update colMap
+      const colString: string = col.toString() + ", " + currNum.toString();
+      if (colMap.get(colString) !== undefined) return false;
+      colMap.set(colString, 1);
+
+      // Update boxMap
+      const box: string = (Math.floor(row / 3) * 3 + Math.floor(col / 3) + 1).toString();
+      const boxString: string = box + ", " + currNum.toString();
+      if (boxMap.get(boxString) !== undefined) return false;
+      boxMap.set(boxString, 1);
+    }
+  }
+
+  return true;
+}
+
+// Passed, 61ms, 52.83mb
+function isValidSudoku2(board: string[][]): boolean {
 
   const rowMap = new Map<string, number>();
   const colMap = new Map<string, number>();
