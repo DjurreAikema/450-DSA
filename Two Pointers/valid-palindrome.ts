@@ -4,8 +4,15 @@
 // it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 // Given a string s, return true if it is a palindrome, or false otherwise.
 
-// Passed, 78ms, 54.09mb
 function isPalindrome(s: string): boolean {
+  // Split string by space and then join them again to get rid of the spaces
+  const cleanStr: string = s.split(' ').join('').replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
+  const reversed: string = cleanStr.split('').reverse().join('').toLowerCase()
+  return cleanStr === reversed;
+}
+
+// Passed, 78ms, 54.09mb
+function isPalindrome1(s: string): boolean {
   let cleanedString: string = s.replace(/[^a-zA-Z0-9]/g, "");
   cleanedString = cleanedString.replace(/\s/g, "");
   cleanedString = cleanedString.toLowerCase();
